@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobante de Remesa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Comprobante de Remesa</h1>
+    <p>ID del Comprobante: {{ receipt['receipt_id'] }}</p>
+    <p>Fecha: {{ receipt['date'] }}</p>
+    <p>Emisor: {{ receipt['sender'] }}</p>
+    <p>Beneficiario: {{ receipt['receiver'] }}</p>
+    <p>Monto en CLP: {{ receipt['amount_clp'] }}</p>
+    <p>Moneda Destino: {{ receipt['currency'] }}</p>
+    <p>Monto Convertido: {{ receipt['converted_amount'] }}</p>
+    <p>Comisión: {{ receipt['commission'] }}</p>
+    <p>Monto Final: {{ receipt['final_amount'] }}</p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# Definir las rutas de origen y destino
+$sourcePath = "C:\Users\hrojas\OneDrive - Tucapel\bak"
+$bakDestination = "C:\Users\hrojas\OneDrive - Tucapel\bak\baks"
+$logDestination = "C:\Users\hrojas\OneDrive - Tucapel\bak\logs"
+
+# Crear las carpetas de destino si no existen
+if (-Not (Test-Path -Path $bakDestination)) {
+    New-Item -ItemType Directory -Path $bakDestination
+}
+
+if (-Not (Test-Path -Path $logDestination)) {
+    New-Item -ItemType Directory -Path $logDestination
+}
+
+# Mover archivos .bak
+Get-ChildItem -Path $sourcePath -Filter *.bak | ForEach-Object {
+    Move-Item -Path $_.FullName -Destination $bakDestination
+}
+
+# Mover archivos .log
+Get-ChildItem -Path $sourcePath -Filter *.log | ForEach-Object {
+    Move-Item -Path $_.FullName -Destination $logDestination
+}
+
+# Crear archivos de ejemplo con mi nombre
+New-Item -Path "$sourcePath\Hector_Rojas.bak" -ItemType File
+New-Item -Path "$sourcePath\Hector_Rojas.log" -ItemType File
+
+# Mover los archivos de ejemplo
+Move-Item -Path "$sourcePath\Hector_Rojas.bak" -Destination $bakDestination
+Move-Item -Path "$sourcePath\Hector_Rojas.log" -Destination $logDestination
